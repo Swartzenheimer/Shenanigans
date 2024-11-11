@@ -1,2 +1,0 @@
-# Shenanigans
-Today's Shenanigans
