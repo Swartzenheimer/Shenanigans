@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swartzenheimer's Shenanigans</title>
+    <title>Shenanigans Central</title>
     <style>
         /* Basic reset for better cross-browser compatibility */
         * {
@@ -18,7 +18,7 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #e0e0e0, #ffffff);
+            background: linear-gradient(135deg, #333333, #000000); /* Dark gradient for minimalist look */
             font-family: Arial, sans-serif;
             color: #fff;
             text-align: center;
@@ -34,8 +34,7 @@
             max-width: 500px;
             opacity: 1;
             transition: opacity 0.5s ease;
-            /* Initial blur applied only when overlay is visible */
-            filter: blur(8px);
+            filter: blur(8px); /* Initial blur */
         }
 
         /* Heading style */
@@ -88,6 +87,7 @@
             z-index: 1000;
             opacity: 1;
             transition: opacity 0.5s ease;
+            flex-direction: column;
         }
         
         /* Hide the overlay */
@@ -100,39 +100,57 @@
         .overlay.hidden + .container {
             filter: none;
         }
+
+        /* Style for fading in the second message */
+        .message {
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        
+        .message.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
-    <!-- Popup overlay message -->
+    <!-- Popup overlay messages -->
     <div class="overlay" id="popup">
-        Did you seriously just scan my shirt?... Awkward!
+        <div id="message1" class="message">Did you seriously just scan my shirt?... Awkward!</div>
+        <div id="message2" class="message hidden">Choose your Shenanigan!</div>
     </div>
 
     <!-- Main content -->
     <div class="container">
-        <h1>Swartzenheimer's Shenanigans</h1>
-        <p>Choose your shenanigan:</p>
+        <h1>Welcome to Shenanigans Central!</h1>
+        <p>Choose your adventure:</p>
 
         <button class="button" onclick="window.location.href='https://dadjokegenerator.com';">
-            Dad Jokes
+            Dad Joke Generator
         </button>
 
-        <button class="button" onclick="window.location.href='https://www.kidsoundboard.com/';">
-            Soundboard
+        <button class="button" onclick="window.location.href='https://example.com/soundboard';">
+            Funny Soundboard
         </button>
 
-        <button class="button" onclick="window.location.href='https://neal.fun/ambient-chaos/';">
-            Ambient Chaos
+        <button class="button" onclick="window.location.href='https://mydynamicshirt.zapto.org';">
+            Today’s Shenanigans
         </button>
 
-        <div class="footer">May your Shenanigans be epic!😄</div>
+        <div class="footer">May your Shenanigans be awkward and unforgettable!</div>
     </div>
 
     <script>
-        // Hide the popup message after 3 seconds
+        // Display the first message, then switch to the second
+        setTimeout(() => {
+            document.getElementById('message1').classList.add('hidden');  // Hide the first message
+            document.getElementById('message2').classList.remove('hidden');  // Show the second message
+        }, 3000);  // 3 seconds for the first message
+
+        // Hide the popup and reveal the main page after the second message
         setTimeout(() => {
             document.getElementById('popup').classList.add('hidden');
-        }, 5000);  // 3000 milliseconds = 3 seconds
+        }, 6000);  // 3 seconds for the second message (total of 6 seconds)
     </script>
 </body>
 </html>
