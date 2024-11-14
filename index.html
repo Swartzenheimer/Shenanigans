@@ -3,50 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swartzenheimer's Shenanigan Timer</title>
+    <title>Shenanigator's Secret Shenanigans</title>
     <style>
-        /* Basic styling */
+        /* Basic reset for better cross-browser compatibility */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background and layout */
         body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            padding-top: 40px;
+            background: linear-gradient(135deg, #333333, #000000);
             font-family: Arial, sans-serif;
-            background-color: #333;
             color: #fff;
             text-align: center;
-            padding: 50px;
+            overflow: hidden;
         }
+
+        /* Main container style */
         .container {
-            background-color: #444;
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
             border-radius: 10px;
-            max-width: 400px;
-            margin: auto;
+            width: 90%;
+            max-width: 500px;
+            opacity: 1;
+            transition: opacity 0.5s ease;
         }
+
+        /* Heading style */
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* Banner image */
+        .banner {
+            width: 100%;
+            max-width: 450px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        /* Button styles with gradient */
         .button {
-            display: inline-block;
-            padding: 15px 30px;
+            display: block;
+            width: 100%;
+            padding: 15px;
             margin: 10px 0;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
             color: #fff;
-            background-color: #3a7d33;
+            background: linear-gradient(135deg, #3a7d33, #2e6030);
             border: none;
             border-radius: 8px;
             cursor: pointer;
             transition: background 0.3s ease;
             text-decoration: none;
         }
+
         .button:hover {
-            background-color: #2e6030;
+            background: linear-gradient(135deg, #2e6030, #3a7d33);
         }
+
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        /* Countdown display */
         #countdown {
             font-size: 1.5rem;
-            margin-top: 20px;
             color: #ffcc00;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
+
+    <!-- Main content -->
     <div class="container">
-        <h1>Shenanigan of the Moment</h1>
-        <p><i>Every 10 minutes brings a new adventure!</i></p>
+        <!-- Banner image at the top -->
+        <img src="https://raw.githubusercontent.com/Swartzenheimer/Shenanigans/main/The%20Shenanigator.png" alt="The Shenanigator's Banner" class="banner">
+
+        <p><i>Today's Special Shenanigan:</i></p>
 
         <!-- Dynamic Shenanigan Button -->
         <a id="shenanigan-button" href="#" class="button">Loading...</a>
@@ -56,6 +104,8 @@
 
         <!-- Countdown Timer Display -->
         <div id="countdown">10:00</div>
+
+        <div class="footer">May your Shenanigans be awkward and unforgettable!</div>
     </div>
 
     <script>
