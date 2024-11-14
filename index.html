@@ -116,10 +116,16 @@
             { label: "Ambient Chaos", url: "https://neal.fun/ambient-chaos/" }
         ];
 
-        // Function to get the current shenanigan based on the time (rotates every page refresh)
+        // Set the cycle start time (e.g., midnight UTC) and duration
+        const cycleDuration = 600 * 1000; // 10 minutes in milliseconds
+        const cycleStart = new Date("2024-01-01T00:00:00Z").getTime(); // Fixed start date at midnight UTC
+
         function getCurrentShenanigan() {
-            const timeIndex = Math.floor(Date.now() / 1000 / 600) % shenanigans.length; // Change every 10 mins
-            return shenanigans[timeIndex];
+            const now = Date.now();
+            const elapsedTime = (now - cycleStart) % cycleDuration;
+            const currentIndex = Math.floor((now - cycleStart) / cycleDuration) % shenanigans.length;
+            countdownTime = cycleDuration - elapsedTime; // Set countdown time based on elapsed time
+            return shenanigans[currentIndex];
         }
 
         // Update the shenanigan button with the current shenanigan
@@ -131,18 +137,18 @@
         }
 
         // Countdown Timer Logic
-        let countdownTime = 600; // 10 minutes in seconds
+        let countdownTime;
         const countdownDisplay = document.getElementById("countdown");
 
         function startCountdown() {
             const countdownInterval = setInterval(() => {
-                let minutes = Math.floor(countdownTime / 60);
-                let seconds = countdownTime % 60;
+                let minutes = Math.floor(countdownTime / 60000);
+                let seconds = Math.floor((countdownTime % 60000) / 1000);
                 countdownDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                countdownTime--;
+                countdownTime -= 1000;
 
                 // When countdown reaches zero, refresh the page
-                if (countdownTime < 0) {
+                if (countdownTime <= 0) {
                     clearInterval(countdownInterval);
                     window.location.reload();
                 }
