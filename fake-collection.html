@@ -42,7 +42,10 @@
     <div id="info-display" class="fake-info">
         <!-- JavaScript will populate this section with data -->
     </div>
-    <div id="additional-info" class="fake-info hidden">
+    <div id="location-info" class="fake-info hidden">
+        <!-- Location data will be displayed here -->
+    </div>
+    <div id="additional-info" class="fake-info">
         <p>Estimated Bank Balance: $3,257,894.23</p>
         <p>Mother's Maiden Name: TotallyNotABot</p>
         <p>Social Security Number: 123-45-6789</p>
@@ -59,12 +62,32 @@
             <p>Platform: ${navigator.platform}</p>
             <p>Screen Resolution: ${window.screen.width} x ${window.screen.height}</p>
             <p>Device Type: ${/Mobi|Android/i.test(navigator.userAgent) ? 'Mobile' : 'Desktop'}</p>
-            <p>Approximate Location: Somewhere on Planet Earth 🌍</p>
         `;
         infoDisplay.innerHTML = fakeInfo;
     }
 
+    function getLocation() {
+        const locationInfo = document.getElementById('location-info');
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                const { latitude, longitude } = position.coords;
+                locationInfo.innerHTML = `
+                    <p>Approximate Location:</p>
+                    <p>Latitude: ${latitude.toFixed(2)}, Longitude: ${longitude.toFixed(2)}</p>
+                `;
+                locationInfo.classList.remove('hidden');
+            }, error => {
+                locationInfo.innerHTML = `<p>Location: Unable to retrieve location 😢</p>`;
+                locationInfo.classList.remove('hidden');
+            });
+        } else {
+            locationInfo.innerHTML = `<p>Location: Geolocation is not supported by your browser.</p>`;
+            locationInfo.classList.remove('hidden');
+        }
+    }
+
     displayDeviceInfo();
+    getLocation();
 </script>
 
 </body>
