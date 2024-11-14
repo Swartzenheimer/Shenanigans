@@ -51,8 +51,8 @@
             border-radius: 10px;
         }
 
-        /* Button styles with gradient */
-        .button {
+        /* Shenanigan button styles with gradient */
+        .button-shenanigan {
             display: block;
             width: 100%;
             padding: 15px;
@@ -68,8 +68,29 @@
             text-decoration: none;
         }
 
-        .button:hover {
+        .button-shenanigan:hover {
             background: linear-gradient(135deg, #2e6030, #3a7d33);
+        }
+
+        /* Dark gray styling for "Buy me a coffee" button */
+        .button-coffee {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff;
+            background-color: #555555; /* Dark gray */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-decoration: none;
+        }
+
+        .button-coffee:hover {
+            background-color: #666666; /* Slightly lighter gray on hover */
         }
 
         /* Footer */
@@ -94,16 +115,16 @@
         <!-- Banner image at the top -->
         <img src="https://raw.githubusercontent.com/Swartzenheimer/Shenanigans/main/The%20Shenanigator.png" alt="The Shenanigator's Banner" class="banner">
 
-        <p><i>Current Shenanigan:</i></p>
+        <p><i>Today's Special Shenanigan:</i></p>
 
         <!-- Dynamic Shenanigan Button -->
-        <a id="shenanigan-button" href="#" class="button">Loading...</a>
+        <a id="shenanigan-button" href="#" class="button-shenanigan">Loading...</a>
 
-        <!-- Persistent "Buy Me a Coffee" Button -->
-        <a href="https://buymeacoffee.com/swartzenheimer" class="button">Buy me a coffee</a>
+        <!-- Persistent "Buy Me a Coffee" Button with Dark Gray Color -->
+        <a href="https://buymeacoffee.com/swartzenheimer" class="button-coffee">Buy me a coffee</a>
 
         <!-- Countdown Timer Display -->
-        <div id="countdown">10:00</div>
+        <div id="countdown">3:00</div>
 
         <div class="footer">May your Shenanigans be awkward and unforgettable!</div>
     </div>
@@ -116,7 +137,7 @@
             { label: "Ambient Chaos", url: "https://neal.fun/ambient-chaos/" }
         ];
 
-        // Set the cycle start time (e.g., midnight UTC) and duration
+        // Set the cycle duration to 3 minutes (180,000 milliseconds)
         const cycleDuration = 180 * 1000; // 3 minutes in milliseconds
         const cycleStart = new Date("2024-01-01T00:00:00Z").getTime(); // Fixed start date at midnight UTC
 
