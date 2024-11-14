@@ -132,6 +132,8 @@
         <!-- Banner image at the top -->
         <img src="https://raw.githubusercontent.com/Swartzenheimer/Shenanigans/main/The%20Shenanigator.png" alt="The Shenanigator's Banner" class="banner">
 
+        <h1>The Shenanigator's</h1>
+        <h1>Secret Shenanigans</h1>
         <p><i>Today's Special:</i></p>
 
         <button class="button" onclick="window.location.href='https://dadjokegenerator.com';">
@@ -168,43 +170,34 @@
             document.getElementById("message5").classList.add("hidden");
         }
 
+        // Function to hide the popup and remove blur
+        function closePopup() {
+            document.getElementById("popup").classList.add("hidden");
+            document.querySelector(".container").style.filter = "none"; // Unblur the screen
+        }
+
         // Display messages based on visit count
+        hideAllMessages(); // Ensure all messages are hidden initially
         if (visitCount === 1) {
             // First visit (New visitor)
-            hideAllMessages();
             document.getElementById("message1").classList.remove("hidden");
             setTimeout(() => {
                 document.getElementById("message1").classList.add("hidden");
                 document.getElementById("message2").classList.remove("hidden");
             }, 4000);
-            setTimeout(() => {
-                document.getElementById("popup").classList.add("hidden");
-                document.querySelector(".container").style.filter = "none"; // Unblur the screen
-            }, 7000);
+            setTimeout(closePopup, 7000);
         } else if (visitCount === 2) {
             // Second visit
-            hideAllMessages();
             document.getElementById("message3").classList.remove("hidden");
-            setTimeout(() => {
-                document.getElementById("popup").classList.add("hidden");
-                document.querySelector(".container").style.filter = "none"; // Unblur the screen
-            }, 2000);
+            setTimeout(closePopup, 2000);
         } else if (visitCount === 3) {
             // Third visit
-            hideAllMessages();
             document.getElementById("message4").classList.remove("hidden");
-            setTimeout(() => {
-                document.getElementById("popup").classList.add("hidden");
-                document.querySelector(".container").style.filter = "none"; // Unblur the screen
-            }, 3000);
+            setTimeout(closePopup, 3000);
         } else {
             // Fourth visit and beyond
-            hideAllMessages();
             document.getElementById("message5").classList.remove("hidden");
-            setTimeout(() => {
-                document.getElementById("popup").classList.add("hidden");
-                document.querySelector(".container").style.filter = "none"; // Unblur the screen
-            }, 3000);
+            setTimeout(closePopup, 3000);
         }
     </script>
 </body>
