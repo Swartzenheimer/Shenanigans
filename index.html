@@ -43,6 +43,14 @@
             margin-bottom: 20px;
         }
 
+        /* Banner image */
+        .banner {
+            width: 100%;
+            max-width: 450px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
         /* Button styles */
         .button {
             display: block;
@@ -122,6 +130,9 @@
 
     <!-- Main content -->
     <div class="container">
+        <!-- Banner image at the top -->
+        <img src="https://your-github-username.github.io/your-repo-name/The%20Shenanigator.png" alt="The Shenanigator's Banner" class="banner">
+
         <h1>The Shenanigator's</h1>
         <h1>Secret Shenanigans</h1>
         <p><i>Today's Special:</i></p>
@@ -150,12 +161,12 @@
         setTimeout(() => {
             document.getElementById('message1').classList.add('hidden');  // Hide the first message
             document.getElementById('message2').classList.remove('hidden');  // Show the second message
-        }, 4000);  // 3 seconds for the first message
+        }, 4000);  // 4 seconds for the first message
 
         // Hide the popup and reveal the main page after the second message
         setTimeout(() => {
             document.getElementById('popup').classList.add('hidden');
-        }, 7000);  // 3 seconds for the second message (total of 6 seconds)
+        }, 7000);  // 3 seconds for the second message (total of 7 seconds)
     </script>
 </body>
 </html>
