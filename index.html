@@ -81,7 +81,7 @@
             font-size: 1.1rem;
             font-weight: bold;
             color: #fff;
-            background-color: #555555; /* Dark gray */
+            background-color: #555555;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -90,7 +90,32 @@
         }
 
         .button-coffee:hover {
-            background-color: #666666; /* Slightly lighter gray on hover */
+            background-color: #666666;
+        }
+
+        /* Enhanced label styles */
+        .label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffcc00;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            margin: 20px 0 10px;
+        }
+
+        .countdown-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #00ccff;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            margin-top: 20px;
+        }
+
+        /* Countdown display */
+        #countdown {
+            font-size: 1.8rem;
+            color: #ffcc00;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            margin-top: 5px;
         }
 
         /* Footer */
@@ -98,13 +123,6 @@
             margin-top: 20px;
             font-size: 0.8rem;
             opacity: 0.7;
-        }
-
-        /* Countdown display */
-        #countdown {
-            font-size: 1.5rem;
-            color: #ffcc00;
-            margin-top: 15px;
         }
     </style>
 </head>
@@ -115,7 +133,8 @@
         <!-- Banner image at the top -->
         <img src="https://raw.githubusercontent.com/Swartzenheimer/Shenanigans/main/The%20Shenanigator.png" alt="The Shenanigator's Banner" class="banner">
 
-        <p><i>Current Shenanigan:</i></p>
+        <!-- Labels for Shenanigan info -->
+        <div class="label">Current Shenanigan:</div>
 
         <!-- Dynamic Shenanigan Button -->
         <a id="shenanigan-button" href="#" class="button-shenanigan">Loading...</a>
@@ -123,8 +142,8 @@
         <!-- Persistent "Buy Me a Coffee" Button with Dark Gray Color -->
         <a href="https://buymeacoffee.com/swartzenheimer" class="button-coffee">Buy me a coffee</a>
 
-        <!-- Countdown Timer Display -->
-        <i> New Shenanigan in:</i>
+        <!-- Countdown Label -->
+        <div class="countdown-label">New Shenanigan in:</div>
         <div id="countdown">3:00</div>
 
         <div class="footer">May your Shenanigans be awkward and unforgettable!</div>
