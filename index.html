@@ -166,12 +166,12 @@
 <body>
 
     <!-- Popup overlay messages -->
-    <div class="overlay" id="popup">
+    <div class="overlay hidden" id="popup">
         <div id="message1" class="message hidden">Did you seriously just scan my shirt?... Awkward!</div>
         <div id="message2" class="message hidden">In that case, enjoy the Shenanigans!</div>
         <div id="message3" class="message hidden">Back again, are we? You must be having fun!</div>
-        <div id="message4" class="message hidden">I hope your just refreshing the page and not taking loads if pictures of me...🤔</div>
-        <div id="message5" class="message hidden">Welcome back... again... Perhaps you should buy me a coffee?</div>
+        <div id="message4" class="message hidden">I hope you're just refreshing the page and not taking loads of pictures of me...🤔</div>
+        <div id="message5" class="message hidden">Welcome back... again... Perhaps you should buy me a beer?</div>
     </div>
 
     <!-- Main content -->
@@ -227,51 +227,44 @@
 
                 if (countdownTime <= 0) {
                     clearInterval(countdownInterval);
+                    sessionStorage.setItem("countdownRefresh", "true"); // Mark as a timer refresh
                     window.location.reload();
                 }
             }, 1000);
         }
-
-        updateButton();
-        startCountdown();
 
         // Popup logic for displaying messages
         let visitCount = parseInt(localStorage.getItem("visitCount")) || 0;
         visitCount++;
         localStorage.setItem("visitCount", visitCount);
 
-        function hideAllMessages() {
-            document.getElementById("message1").classList.add("hidden");
-            document.getElementById("message2").classList.add("hidden");
-            document.getElementById("message3").classList.add("hidden");
-            document.getElementById("message4").classList.add("hidden");
-            document.getElementById("message5").classList.add("hidden");
+        const popup = document.getElementById("popup");
+        const popupShown = sessionStorage.getItem("countdownRefresh");
+
+        if (!popupShown) {
+            sessionStorage.removeItem("countdownRefresh"); // Ensure it resets for the next session
+            popup.classList.remove("hidden");
+            if (visitCount === 1) {
+                document.getElementById("message1").classList.remove("hidden");
+                setTimeout(() => {
+                    document.getElementById("message1").classList.add("hidden");
+                    document.getElementById("message2").classList.remove("hidden");
+                }, 3000);
+                setTimeout(() => popup.classList.add("hidden"), 6000);
+            } else if (visitCount === 2) {
+                document.getElementById("message3").classList.remove("hidden");
+                setTimeout(() => popup.classList.add("hidden"), 4000);
+            } else if (visitCount === 3) {
+                document.getElementById("message4").classList.remove("hidden");
+                setTimeout(() => popup.classList.add("hidden"), 4000);
+            } else {
+                document.getElementById("message5").classList.remove("hidden");
+                setTimeout(() => popup.classList.add("hidden"), 4000);
+            }
         }
 
-        function closePopup() {
-            document.getElementById("popup").classList.add("hidden");
-            document.querySelector(".container").style.filter = "none"; // Unblur the screen
-        }
-
-        hideAllMessages();
-
-        if (visitCount === 1) {
-            document.getElementById("message1").classList.remove("hidden");
-            setTimeout(() => {
-                document.getElementById("message1").classList.add("hidden");
-                document.getElementById("message2").classList.remove("hidden");
-            }, 3000);
-            setTimeout(closePopup, 6000);
-        } else if (visitCount === 2) {
-            document.getElementById("message3").classList.remove("hidden");
-            setTimeout(closePopup, 4000);
-        } else if (visitCount === 3) {
-            document.getElementById("message4").classList.remove("hidden");
-            setTimeout(closePopup, 4000);
-        } else {
-            document.getElementById("message5").classList.remove("hidden");
-            setTimeout(closePopup, 4000);
-        }
+        updateButton();
+        startCountdown();
     </script>
 </body>
 </html>
