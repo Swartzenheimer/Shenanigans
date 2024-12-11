@@ -189,6 +189,15 @@
     </div>
 
     <script>
+        // Configuration for popup durations (in milliseconds)
+        const popupDurations = {
+            message1: 3000, // 3 seconds
+            message2: 3000, // 3 seconds
+            message3: 4000, // 4 seconds
+            message4: 4000, // 4 seconds
+            message5: 4000, // 4 seconds
+        };
+
         // Array of shenanigans with their URLs and labels
         const shenanigans = [
             { label: "Dad Joke Generator", url: "https://dadjokegenerator.com" },
@@ -250,17 +259,17 @@
                 setTimeout(() => {
                     document.getElementById("message1").classList.add("hidden");
                     document.getElementById("message2").classList.remove("hidden");
-                }, 3000);
-                setTimeout(() => popup.classList.add("hidden"), 6000);
+                }, popupDurations.message1);
+                setTimeout(() => popup.classList.add("hidden"), popupDurations.message1 + popupDurations.message2);
             } else if (visitCount === 2) {
                 document.getElementById("message3").classList.remove("hidden");
-                setTimeout(() => popup.classList.add("hidden"), 4000);
+                setTimeout(() => popup.classList.add("hidden"), popupDurations.message3);
             } else if (visitCount === 3) {
                 document.getElementById("message4").classList.remove("hidden");
-                setTimeout(() => popup.classList.add("hidden"), 4000);
+                setTimeout(() => popup.classList.add("hidden"), popupDurations.message4);
             } else {
                 document.getElementById("message5").classList.remove("hidden");
-                setTimeout(() => popup.classList.add("hidden"), 4000);
+                setTimeout(() => popup.classList.add("hidden"), popupDurations.message5);
             }
         }
 
