@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -165,16 +166,18 @@
 </head>
 <body>
 
-    <!-- Popup overlay messages -->
+
     <div class="overlay hidden" id="popup">
+
         <div id="message1" class="message hidden">Did you seriously just scan my shirt?... Awkward!</div>
         <div id="message2" class="message hidden">In that case, enjoy the Shenanigans!</div>
         <div id="message3" class="message hidden">Back again, are we? You must be having fun!</div>
         <div id="message4" class="message hidden">I hope you're just refreshing the page and not taking loads of pictures of me...🤔</div>
         <div id="message5" class="message hidden">Welcome back... again... Perhaps you should buy me a beer?</div>
+        
     </div>
 
-    <!-- Main content -->
+    
     <div class="container">
         <img src="https://raw.githubusercontent.com/Swartzenheimer/Shenanigans/main/The%20Shenanigator.png" alt="The Shenanigator's Banner" class="banner">
 
@@ -274,6 +277,244 @@
         }
 
         updateButton();
+        startCountdown();
+    </script>
+</body>
+</html>
+
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shenanigator's Secret Shenanigans</title>
+    <style>
+        /* Basic reset for better cross-browser compatibility */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Background and layout */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            padding-top: 40px;
+            background: linear-gradient(135deg, #333333, #000000);
+            font-family: Arial, sans-serif;
+            color: #fff;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Main container style */
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Banner image */
+        .banner {
+            width: 100%;
+            max-width: 450px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        /* Button styles */
+        .button-shenanigan, .button-coffee {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            text-decoration: none;
+        }
+
+        .button-shenanigan {
+            background: linear-gradient(135deg, #3a7d33, #2e6030);
+        }
+
+        .button-shenanigan:hover {
+            background: linear-gradient(135deg, #2e6030, #3a7d33);
+        }
+
+        .button-coffee {
+            background-color: #555555;
+        }
+
+        .button-coffee:hover {
+            background-color: #666666;
+        }
+
+        /* Labels and countdown */
+        .label, .countdown-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 20px 0 10px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+        }
+
+        .label {
+            color: #ffcc00;
+        }
+
+        .countdown-label {
+            color: #00ccff;
+        }
+
+        #countdown {
+            font-size: 1.8rem;
+            color: #ffcc00;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            margin-top: 5px;
+        }
+
+        /* Popup overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            text-align: center;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            flex-direction: column;
+        }
+
+        .overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .message {
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        .message.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Popup overlay messages -->
+    <div class="overlay" id="popup">
+        <div id="message1" class="message hidden">Wake up, J-Mar...</div>
+        <div id="message2" class="message hidden">The Matrix has you...</div>
+        <div id="message3" class="message hidden">Wake up and realize that...</div>
+        <div id="message4" class="message hidden">you lost 😢</div>
+        <div id="message5" class="message hidden">and now you want my STLs 😏</div>
+    </div>
+
+    <!-- Main content -->
+    <div class="container">
+        <img src="https://raw.githubusercontent.com/Swartzenheimer/Shenanigans/main/The%20Shenanigator.png" alt="The Shenanigator's Banner" class="banner">
+
+        <div class="label">Otsego Lightbot STL Link:</div>
+        <a id="shenanigan-button" href="#" class="button-shenanigan">Loading...</a>
+        <a href="https://buymeacoffee.com/swartzenheimer" class="button-coffee">🍻 Buy me a beer 🍻</a>
+
+        <div class="footer">May your future 3D prints be almost as cool as Swartzenheimers!</div>
+    </div>
+
+    <script>
+        // Configuration for popup durations (in milliseconds)
+        const popupDurations = {
+            message1: 6000,
+            message2: 4000,
+            message3: 3000,
+            message4: 3000,
+            message5: 4000,
+        };
+
+        // Function to display messages consecutively
+        function displayMessagesConsecutively() {
+            const messages = [
+                "message1",
+                "message2",
+                "message3",
+                "message4",
+                "message5",
+            ];
+
+            let currentMessage = 0;
+
+            function showNextMessage() {
+                if (currentMessage > 0) {
+                    document.getElementById(messages[currentMessage - 1]).classList.add("hidden");
+                }
+
+                if (currentMessage < messages.length) {
+                    document.getElementById(messages[currentMessage]).classList.remove("hidden");
+                    setTimeout(() => {
+                        currentMessage++;
+                        showNextMessage();
+                    }, popupDurations[messages[currentMessage]]);
+                } else {
+                    document.getElementById("popup").classList.add("hidden");
+                }
+            }
+
+            showNextMessage();
+        }
+
+        // Initialize popup messages on page load
+        window.onload = function () {
+            displayMessagesConsecutively();
+        };
+
+        // Countdown logic
+        const cycleDuration = 90 * 1000;
+        let countdownTime = cycleDuration;
+
+        function startCountdown() {
+            const countdownDisplay = document.getElementById("countdown");
+            setInterval(() => {
+                let minutes = Math.floor(countdownTime / 60000);
+                let seconds = Math.floor((countdownTime % 60000) / 1000);
+                countdownDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                countdownTime -= 1000;
+
+                if (countdownTime <= 0) {
+                    window.location.reload();
+                }
+            }, 1000);
+        }
+
         startCountdown();
     </script>
 </body>
